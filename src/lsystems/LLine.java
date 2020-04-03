@@ -14,8 +14,30 @@ public class LLine {
 		this.line = start;
 	}
 	
-	public void process() throws LSystemSymbolException, LSystemLengthException {
-		
+	public void process() throws LSystemSymbolException, LSystemLengthException 
+	{
+			for (LRule rule : rules)
+			{
+				char newLine[];
+				
+			//	if (rule.getMatch() != 'A' || rule.getMatch() != 'B' || rule.getMatch() != 'C')
+				if (rule.getMatch() != 'A' && rule.getMatch() != 'B' && rule.getMatch() != 'C')
+				{
+					throw new LSystemSymbolException();
+				}
+				else if (line == null)
+				{
+					throw new LSystemLengthException(); 
+				}
+				
+				for (int i = 0; i < line.length; i++)
+				{
+					if (line[i] == rule.getMatch())
+					{
+						line = rule.getBody();
+					}
+				}
+			}
 	}
 	
 	
